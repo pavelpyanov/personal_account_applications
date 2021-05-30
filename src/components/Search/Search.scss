@@ -1,0 +1,34 @@
+.search {
+  width: 100%;
+  height: 65px;
+  padding: 0 0 0 112px;
+  background-color: #d1e0ed;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  display: flex;
+  align-items: center;
+
+  & label {
+    position: relative;
+    display: flex;
+
+    & input {
+      width: 680px;
+      height: 40px;
+      margin: 0 0 5px 34px;
+      padding: 7px;
+      border-radius: 20px;
+      box-shadow: 0 0 7px 0 rgba(0, 140, 240, 0.15), inset -1px 0px 7px 0 rgba(0, 0, 0, 0.11);
+      border: solid 1px #42aaff;
+      background-color: #ffffff;
+    }
+
+    & img {
+      position: absolute;
+      right: 13px;
+      top: 10px;
+      z-index: 10;
+    }
+  }
+}

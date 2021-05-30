@@ -1,0 +1,72 @@
+.new-task {
+  position: fixed;
+  overflow-y: auto;
+  right: 0;
+  top: 65px;
+  width: 60%;
+  height: 100%;
+  background-color: #ecf3f7;
+
+  &__area {
+    height: 100px!important;
+  }
+
+  &__title {
+    background-color: #1a4876;
+    padding: 15px 35px;
+    font-size: 18px!important;
+    color: #ffffff!important;
+    margin: 0 0 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      font-size: 18px!important;
+      color: #ffffff!important;
+    }
+
+    & button {
+      background: none;
+    }
+  }
+
+  &__form {
+    padding: 0 35px;
+
+    & label {
+      font-size: 14px;
+      font-weight: 300;
+      color: #9f9ea7;
+    }
+
+    & input[type='submit'] {
+      align-self: start;
+      padding: 14px 34px;
+      border-radius: 20px;
+      background-color: #008cf0;
+      font-size: 16px;
+      text-align: center;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+  }
+
+  &__line {
+    margin: 0 0 35px 0;
+
+    & label {
+    }
+
+    & textarea {
+      padding: 7px;
+      display: block;
+      margin: 10px 0 0 0;
+      width: 100%;
+      height: 60px;
+      font-size: 14px;
+      resize: none;
+    }
+  }
+}

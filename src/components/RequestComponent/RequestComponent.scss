@@ -1,0 +1,38 @@
+.request {
+  position: relative;
+  &__btn {
+    padding: 14px 34px;
+    border-radius: 20px;
+    background-color: #008cf0;
+    font-size: 16px;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 0 0 290px;
+  }
+}
+
+.tasks {
+  &__head {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+}
+
+.task {
+  &__title {
+    border-right: 2px solid #e2e7ea;
+    padding: 19px 0 19px 15px;
+    font-size: 16px;
+    text-align: left;
+    color: #404147;
+    &_1 { flex: 0 0 116px }
+    &_2 { flex: 0 0 430px}
+    &_3 { flex: 0 0 100px }
+    &_4 { flex: 1 1 auto }
+
+    &:last-child {
+      border-right: 0px
+    }
+  }
+}

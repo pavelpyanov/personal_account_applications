@@ -1,0 +1,38 @@
+.navbar {
+  height: 100%;
+  max-width: 95px;
+  background-color: #002137;
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  overflow: auto;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+
+    &.active {
+      background-color: #002c49;
+    }
+  }
+
+  &__title{
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  &__icon {
+    margin: 0 0 8px 0;
+    text-align: center;
+    & img {
+      max-width: 100%;
+    }
+  }
+}
+
