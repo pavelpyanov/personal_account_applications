@@ -1,7 +1,7 @@
 import {
   CHANGE_EDIT_TASK,
   CHANGE_NEW_TASK, CLEAR_EDIT_TASK,
-  CLEAR_NEW_TASK, GET_EXECUTORS,
+  CLEAR_NEW_TASK, CREATE_EDIT_TASK, GET_EXECUTORS,
   GET_STATUSES,
   HIDE_CREATE,
   HIDE_EDIT,
@@ -88,6 +88,12 @@ export const clearNewTask = () => {
     type: CLEAR_NEW_TASK
   }
 }
+export const createEditTask = (task) => {
+  return {
+    type: CREATE_EDIT_TASK,
+    payload: task
+  }
+}
 export const changeEditTask = (task) => {
   return {
     type: CHANGE_EDIT_TASK,
@@ -142,9 +148,11 @@ export const editTaskAction = (http) => {
     body.statusId = state.editTask.statusId
     body.executorId = state.editTask.executorId
 
-    const response = await http.request(REQUESTS.editTask, 'PUT', body)
-      dispatch(updateTasks(http))
-      dispatch(clearEditTask())
-      dispatch(hideEdit())
+    await http.request(REQUESTS.editTask, 'PUT', body)
+
+    dispatch(updateTasks(http))
+    dispatch(hideEdit())
+    dispatch(clearEditTask())
+
   }
 }

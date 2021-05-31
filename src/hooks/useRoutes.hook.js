@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import {KnowledgeBase} from '../pages/KnowledgeBase'
 import {Requests} from '../pages/Requests'
 import {Staff} from '../pages/Staff'
@@ -27,6 +27,7 @@ export const useRoutes = () => {
       <Route path='/setting' exact>
         <Setting/>
       </Route>
+      <Redirect to='/requests' />
     </Switch>
   )
 }

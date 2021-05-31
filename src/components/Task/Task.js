@@ -1,7 +1,7 @@
 import React from 'react'
 import './Task.scss'
 import {useDispatch, useSelector} from 'react-redux'
-import {changeEditTask, showEdit} from '../../redux/actions'
+import {clearEditTask, createEditTask, showEdit} from '../../redux/actions'
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch()
@@ -15,7 +15,8 @@ export const Task = ({ task }) => {
   })
 
   const editTaskHandler = () => {
-    dispatch(changeEditTask(task))
+    dispatch(clearEditTask())
+    dispatch(createEditTask(task))
     dispatch(showEdit())
   }
 

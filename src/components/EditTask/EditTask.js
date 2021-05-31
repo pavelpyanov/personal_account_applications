@@ -10,22 +10,17 @@ import {useHTTP} from '../../hooks/useHTTP.hook'
 export const EditTask = () => {
   const http = useHTTP()
   const dispatch = useDispatch()
+
   const editTask = useSelector(state => state.editTask)
   const statuses = useSelector(state => state.status)
-  const status = useStatus(editTask.statusId)
   const executors = useSelector(state => state.executors)
 
+  const status = useStatus(editTask.statusId)
+
   const selectChangeHandler = (event) => {
-    const getObj = () => {
-      console.log(event.target.name)
-      if (event.target.name === 'comment') {
-        return {}
-      }
-      return {
-        [event.target.name]: event.target.value
-      }
-    }
-    dispatch(changeEditTask(getObj()))
+    dispatch(changeEditTask({
+      [event.target.name]: event.target.value
+    }))
   }
 
   const submitHandler = (event) => {
@@ -84,8 +79,8 @@ export const EditTask = () => {
               {executors.map((item) => {
                 return (
                   <option
-                    key={item.id}
-                    value={item.id}
+                    key={+item.id}
+                    value={+item.id}
                   >
                     {item.name}
                   </option>)
