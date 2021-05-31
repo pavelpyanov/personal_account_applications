@@ -45,7 +45,7 @@ export const NewTask = () => {
             onInput={newTaskHandler}
           />
         </div>
-        <input className='new-task__btn' type='submit'/>
+        <input className='new-task__btn' type='submit' value='Сохранить'/>
       </form>
     </div>
   )
