@@ -127,7 +127,6 @@ export const sendNewTask = (http) => {
       "executorGroupId": 44737
     }
     const response = await http.request(REQUESTS.create, 'POST', body)
-    // const response = 153246
     const newTask = await http.request(REQUESTS.getOne(response))
     dispatch({
       type: PUT_TASKS,
@@ -135,7 +134,7 @@ export const sendNewTask = (http) => {
     })
     dispatch(clearNewTask())
     dispatch(hideCreate())
-    dispatch(changeEditTask(newTask))
+    dispatch(createEditTask(newTask))
     dispatch(showEdit())
   }
 }
