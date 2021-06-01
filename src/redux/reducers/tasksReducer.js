@@ -1,4 +1,4 @@
-import {PUT_TASKS, UPDATE_TASKS} from '../types'
+import {CLEAR_TASKS, PUT_TASKS, UPDATE_TASKS} from '../types'
 
 const initialState = []
 export const tasksReducer = (state=initialState, action) => {
@@ -7,6 +7,8 @@ export const tasksReducer = (state=initialState, action) => {
       return [...state, ...action.payload]
     case UPDATE_TASKS:
       return [...action.payload]
+    case CLEAR_TASKS:
+      return initialState
     default:
       return state
   }

@@ -1,10 +1,12 @@
 import React from 'react'
 import './Task.scss'
 import {useDispatch, useSelector} from 'react-redux'
-import {clearEditTask, createEditTask, showEdit} from '../../redux/actions'
+import {createEditTask} from '../../redux/actions'
+import {useHTTP} from '../../hooks/useHTTP.hook'
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch()
+  const http = useHTTP()
   const statuses = useSelector(state => state.status)
   let statusColor, statusName
   statuses.forEach(status => {
@@ -15,9 +17,7 @@ export const Task = ({ task }) => {
   })
 
   const editTaskHandler = () => {
-    dispatch(clearEditTask())
-    dispatch(createEditTask(task))
-    dispatch(showEdit())
+    dispatch(createEditTask(task.id, http))
   }
 
   return(

@@ -1,13 +1,13 @@
 import {
   CHANGE_EDIT_TASK,
   CHANGE_NEW_TASK, CLEAR_EDIT_TASK,
-  CLEAR_NEW_TASK, CREATE_EDIT_TASK, GET_EXECUTORS,
+  CLEAR_NEW_TASK, CLEAR_TASKS, CREATE_EDIT_TASK, GET_EXECUTORS,
   GET_STATUSES,
   HIDE_CREATE,
-  HIDE_EDIT,
+  HIDE_EDIT, HIDE_LOADING,
   PUT_TASKS,
   SHOW_CREATE,
-  SHOW_EDIT, UPDATE_TASKS,
+  SHOW_EDIT, SHOW_LOADING, UPDATE_TASKS,
 } from './types'
 import {REQUESTS} from '../URL'
 
@@ -31,14 +31,25 @@ export const hideEdit = () => {
     type: HIDE_EDIT
   }
 }
-
+export const showLoading = () => {
+  return {
+    type: SHOW_LOADING
+  }
+}
+export const hideLoading = () => {
+  return {
+    type: HIDE_LOADING
+  }
+}
 export const putTasks = (http) => {
   return async (dispatch) => {
     const tasks = await http.request(REQUESTS.getTasks)
-    dispatch({
-      type: PUT_TASKS,
-      payload: tasks.value
-    })
+    if (tasks && tasks.value && tasks.value.length) {
+      dispatch({
+        type: PUT_TASKS,
+        payload: tasks.value
+      })
+    }
   }
 }
 export const updateTasks = (http) => {
@@ -59,22 +70,31 @@ export const updateTasks = (http) => {
     })
   }
 }
+export const clearTasks = () => {
+  return {
+    type: CLEAR_TASKS
+  }
+}
 export const getStatuses = (http) => {
   return async (dispatch) => {
     const statuses = await http.request(REQUESTS.getStatuses)
-    dispatch({
-      type: GET_STATUSES,
-      payload: statuses
-    })
+    if (statuses && statuses.length) {
+      dispatch({
+        type: GET_STATUSES,
+        payload: statuses
+      })
+    }
   }
 }
 export const getExecutors = (http) => {
   return async (dispatch) => {
     const executors = await http.request(REQUESTS.getExecutors)
-    dispatch({
-      type: GET_EXECUTORS,
-      payload: executors
-    })
+    if (executors && executors.length) {
+      dispatch({
+        type: GET_EXECUTORS,
+        payload: executors
+      })
+    }
   }
 }
 export const changeNewTask = (name, value) => {
@@ -88,10 +108,18 @@ export const clearNewTask = () => {
     type: CLEAR_NEW_TASK
   }
 }
-export const createEditTask = (task) => {
-  return {
-    type: CREATE_EDIT_TASK,
-    payload: task
+export const createEditTask = (id, http) => {
+  return async (dispatch) => {
+    dispatch(hideEdit())
+    dispatch(clearEditTask())
+    const response = await http.request(REQUESTS.getOne(id))
+    if (response) {
+      dispatch({
+        type: CREATE_EDIT_TASK,
+        payload: response
+      })
+      dispatch(showEdit())
+    }
   }
 }
 export const changeEditTask = (task) => {
@@ -134,8 +162,7 @@ export const sendNewTask = (http) => {
     })
     dispatch(clearNewTask())
     dispatch(hideCreate())
-    dispatch(createEditTask(newTask))
-    dispatch(showEdit())
+    dispatch(createEditTask(newTask.id, http))
   }
 }
 export const editTaskAction = (http) => {

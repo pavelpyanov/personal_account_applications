@@ -1,8 +1,12 @@
 import {useCallback} from "react";
+import {useDispatch} from 'react-redux'
+import {hideLoading, showLoading} from '../redux/actions'
 
 export const useHTTP = () => {
+  const dispatch = useDispatch()
   const request = useCallback(async (url, method = "GET", body = null, headers = {}) => {
     try {
+      dispatch(showLoading())
       if (body) {
         body = JSON.stringify(body)
         headers["Content-Type"] = "application/json"
@@ -18,6 +22,9 @@ export const useHTTP = () => {
       return data
     } catch (e) {
       console.log(e)
+    }
+    finally {
+      dispatch(hideLoading())
     }
   }, [])
 

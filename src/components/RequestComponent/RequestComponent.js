@@ -3,9 +3,10 @@ import './RequestComponent.scss'
 import {Task} from '../Task/Task'
 import {NewTask} from '../NewTask/NewTask'
 import {useDispatch, useSelector} from 'react-redux'
-import {getExecutors, getStatuses, putTasks, showCreate} from '../../redux/actions'
+import {clearTasks, getExecutors, getStatuses, putTasks, showCreate} from '../../redux/actions'
 import {EditTask} from '../EditTask/EditTask'
 import {useHTTP} from '../../hooks/useHTTP.hook'
+import {Loader} from '../Loader/Loader'
 
 export const RequestComponent = () => {
   const view = useSelector(state => state.view)
@@ -17,6 +18,9 @@ export const RequestComponent = () => {
     dispatch(putTasks(http))
     dispatch(getStatuses(http))
     dispatch(getExecutors(http))
+    return () => {
+      dispatch(clearTasks())
+    }
   }, [])
 
   return(
@@ -43,6 +47,7 @@ export const RequestComponent = () => {
             } )}
           </ul>
         </div>
+        {view.loading && <Loader/>}
       </div>
       {view.newTaskView && <NewTask/>}
       {view.editTaskView && <EditTask/>}
