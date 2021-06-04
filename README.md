@@ -4,6 +4,7 @@
 
 В данном проекте использованиы технологии:
 - React - UI интерфейс
+- React router dom - навигация
 - Redux - менеджмент state
 - REST API
 
