@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Perssonal acount appliaction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение личного кабинета для создания и редактирования списка заявок и мониторинга их выполнения
+
+В данном проекте использованиы технологии:
+- React - UI интерфейс
+- Redux - менеджмент state
+- REST API
 
 ## Available Scripts
 
